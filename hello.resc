@@ -1,0 +1,23 @@
+$boot=@build/release/stmBase.elf
+$app=@app.elf
+
+macro loadbootloader
+"""
+   sysbus LoadELF $boot
+   sysbus.cpu VectorTableOffset 0x8000000
+"""
+
+macro loadapp
+"""
+    sysbus LoadELF $app
+    sysbus.cpu VectorTableOffset 0x8004000
+"""
+
+mach create "stm32f4"
+machine LoadPlatformDescription @platforms/boards/stm32f4_discovery-kit.repl
+runMacro $loadbootloader
+runMacro $loadapp
+showAnalyzer sysbus.usart2
+
+
+
