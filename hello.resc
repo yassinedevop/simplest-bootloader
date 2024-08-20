@@ -1,4 +1,4 @@
-$boot=@build/release/stmBase.elf
+$boot=@bootloader.elf
 $app=@app.elf
 
 macro loadbootloader

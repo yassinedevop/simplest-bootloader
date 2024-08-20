@@ -1,63 +1,84 @@
-# Tiny HAL for STM32F407xx
+# Simplest Bootloader for STM32F4
 
-This is a tiny template for an STM32F407 project, which includes a simple hello world message through USART2.
+This repository contains the simplest bootloader implementation for the STM32F4 microcontroller, designed to be used with the Renode simulation environment and Ceedling build system. The bootloader is responsible for initializing the hardware, checking for a valid application, and then jumping to the main application.
 
-The HAL library is implemented from scratch, for the minimal functionality required for the project, obviously, the HAL library is not complete.
+## Features
 
-I always find make files to be a bit confusing, so I decided to use [Ceedling](http://www.throwtheswitch.org/ceedling) to build the project.
+- **Minimal Hardware Initialization:** Sets up the system clock and basic GPIOs.
+- **Application Jumping:** Loads and jumps to the main application located at a predefined memory address.
+- **Error Handling:** Blinks an LED continuously if no valid application is found.
 
-## Current implemented drivers
-- UART Drivers
-- GPIO Drivers
-- RCC Drivers
-- Flash Drivers
-- CRC Drivers
+## Project Structure
 
-## Getting Started 🚀
-To get started with this project, follow these steps:
+```
+simplest-bootloader
+├── src
+│   ├── main.c          # Bootloader source code
+│   ├── startup_stm32f4xx.s  # Startup code for STM32F4
+│   └── stm32f4xx.c     # STM32F4 HAL header file
+├── hello.resc  # Renode script for simulating the STM32F4
+├── README.md           # This file
+└── ceedling_project.yml # Ceedling project configuration file
+|__ Drivers # STM32F4 HAL drivers
+```
 
-1. Clone the repository.
-2. Install the necessary dependencies.
-3. Build the project.
-4. Flash the firmware onto your STM32F407 board.
+## Getting Started
 
-## Dependencies 📦
+### Prerequisites
 
-No external dependencies are required to build this project.
+- **Ceedling:** Install Ceedling for building and testing the project.
+- **Renode:** Install Renode for simulating the STM32F4 microcontroller.
 
-## Building the Project 🛠️
+### Building the Bootloader
 
-Install ceedling, it is a build system for C projects that is used to build the project.
+1. Clone the repository:
 
-    gem install ceedling
+   ```sh
+   git clone https://github.com/yassinedevop/simplest-bootloader.git
+   cd simplest-bootloader
+   ```
 
-Then run the following command to build the project.
+2. Build the project using Ceedling:
 
-    ceedling release
+   ```sh
+   ceedling release
+   ```
 
-A generated .elf will be created in the build/release/ folder.
+   This command compiles the bootloader and runs the unit tests.
 
-to clean the project run the following command.
+### Running the Simulation
 
-    ceedling clean
+1. Open Renode and run the following command to load the simulation script:
 
-## Flashing the Firmware 🔌
+   ```sh
+   renode hello.resc
+   ```
 
-I don't have the board, if you are either you can test the project using a simulator i.e [renode](https://www.renode.io).
+2. Start the simulation:
 
-    renode helo.resc
+   ```sh
+   start
+   ```
 
-Then start the simulation with the following command.
+   The bootloader will initialize, and if a valid application is present, it will jump to it.
 
-    start
+### Testing the Bootloader
+if everything is working correctly, you should see the following output:
+![image success](image.png)
 
-A hello world message will be displayed in the console.
+## Customization
 
-## Contributing 🤝
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+- **Memory Address:** You can change the memory address where the main application is located by modifying the `APP_ADDRESS` macro in `main.c`.
+- **Error Handling:** Customize the LED blink pattern or add additional error handling in the `Bootloader_CheckApp` function.
 
-## Give a Star! ⭐
-If you found this project helpful, please give it a star. It's a quick way to show that you care and it helps me understand which projects people find the most interesting.
+## License
 
-## License 📝
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [STM32F4 Reference Manual](https://www.st.com/resource/en/reference_manual/dm00031020.pdf)
+- [Renode Documentation](https://renode.readthedocs.io/)
+- [Ceedling Documentation](http://www.throwtheswitch.org/ceedling)
+
+Happy coding!
