@@ -16,6 +16,8 @@ simplest-bootloader
 │   ├── main.c          # Bootloader source code
 │   ├── startup_stm32f4xx.s  # Startup code for STM32F4
 │   └── stm32f4xx.c     # STM32F4 HAL header file
+|__ bootloader.elf # boot image
+|__ app.elf # application image
 ├── hello.resc  # Renode script for simulating the STM32F4
 ├── README.md           # This file
 └── ceedling_project.yml # Ceedling project configuration file
