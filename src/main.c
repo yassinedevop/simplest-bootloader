@@ -1,7 +1,7 @@
 /*! \file   main.c
  *  \brief  Custom Bootloader
  *  \author Seghrouchni Yassine
- *  \date   2017-10-28
+ *  \date   2024-08-20
  *  \copyright Copyright (C) 2024 Seghrouchni Yassine
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
