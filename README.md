@@ -13,15 +13,16 @@ This repository contains the simplest bootloader implementation for the STM32F4 
 ```
 simplest-bootloader
 ├── src
-│   ├── main.c          # Bootloader source code
+│   ├── main.c               # Bootloader source code
 │   ├── startup_stm32f4xx.s  # Startup code for STM32F4
-│   └── stm32f4xx.c     # STM32F4 HAL header file
-|__ bootloader.elf # boot image
-|__ app.elf # application image
-├── hello.resc  # Renode script for simulating the STM32F4
-├── README.md           # This file
-└── ceedling_project.yml # Ceedling project configuration file
-|__ Drivers # STM32F4 HAL drivers
+│   └── stm32f4xx.c          # STM32F4 HAL source file
+├── bootloader.elf           # Boot image
+├── app.elf                  # Application image
+├── hello.resc               # Renode script for simulating the STM32F4
+├── README.md                # This file
+├── ceedling_project.yml     # Ceedling project configuration file
+└── Drivers                  # STM32F4 HAL drivers
+
 ```
 
 ## Getting Started
